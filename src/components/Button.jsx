@@ -14,7 +14,6 @@ import { getIxIconSize } from '@/utils/225642'
 import { filterDOMProps } from '@/utils/778315'
 import { mergeRefs } from '@/utils/962582'
 
-// eslint-disable-next-line node/prefer-global/process
 const IS_DEV = process.env.VERCEL_ENV !== 'production'
 
 const RESPONSIVE_SIZE_MAP = {

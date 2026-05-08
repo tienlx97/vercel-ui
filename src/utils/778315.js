@@ -1,5 +1,3 @@
-/* eslint-disable style/no-mixed-operators */
-/* eslint-disable regexp/no-unused-capturing-group */
 const basePropNames = new Set([
   'id',
 ])
@@ -91,7 +89,7 @@ export function filterDOMProps(props, options = {}) {
         || global && globalDOMPropNames.has(propName)
         || events && domEventPropNames.has(propName)
         || propName.endsWith('Capture')
-        && domEventPropNames.has(propName.slice(0, -7))
+        && domEventPropNames.has(propName.slice(0, -7)) 
         || propNames?.has(propName)
         || dataAttributeRegex.test(propName)
 
