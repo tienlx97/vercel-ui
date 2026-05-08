@@ -3,13 +3,16 @@ import NextLink from 'next/link'
 
 import { Children, forwardRef, useEffect, useRef } from 'react'
 
-import { useFocusRing } from '@/hooks/56562'
+import { buttonStyles as styles } from '@/css/styles'
+import { useFocusable, useFocusRing } from '@/hooks/56562'
 import { usePress } from '@/hooks/84671'
 import { mergeProps } from '@/hooks/300597'
 import { useHover } from '@/hooks/434719'
 import { useNewType } from '@/hooks/446691'
 import { useDisabled } from '@/hooks/544652'
-import styles from './button.module.css'
+import { getIxIconSize } from '@/utils/225642'
+import { filterDOMProps } from '@/utils/778315'
+import { mergeRefs } from '@/utils/962582'
 
 // eslint-disable-next-line node/prefer-global/process
 const IS_DEV = process.env.VERCEL_ENV !== 'production'
@@ -184,7 +187,7 @@ function useButton(props, ref) {
   }
 }
 
-export const Button = forwardRef(
+const Button = forwardRef(
   (
     {
       Component = 'button',

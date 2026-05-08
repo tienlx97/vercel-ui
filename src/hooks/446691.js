@@ -5,7 +5,7 @@ export function useNewType(type, isFilled, shade, variant) {
         `geist-new-${type}`,
         isFilled ? `geist-new-${type}-fill` : null,
         shade ? `geist-new-${type}-${shade}` : null,
-        'tooltip' === variant ? 'geist-new-tooltip' : '',
+        variant === 'tooltip' ? 'geist-new-tooltip' : '',
       ]
     : ''
 }

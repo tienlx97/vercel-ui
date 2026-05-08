@@ -10,6 +10,10 @@ export function isFocusVisible() {
   return currentInteractionModality !== 'pointer'
 }
 
+export function getInteractionModality() {
+  return currentInteractionModality
+}
+
 let hadBlurRecently = false
 
 const focusVisibleListeners = new Set()

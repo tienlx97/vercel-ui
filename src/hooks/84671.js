@@ -70,10 +70,11 @@ const NON_TEXT_TRIGGER_INPUT_TYPES = new Set([
   'reset',
 ])
 
+const LINK_CLICKED_SYMBOL = Symbol('linkClicked')
 const PRESSABLE_STYLE_ID = 'react-aria-pressable-style'
 const PRESSABLE_DATA_ATTR = 'data-react-aria-pressable'
 let iosTextSelectionMode = 'default'
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 let iosOriginalWebkitUserSelect = ''
 const elementUserSelectCache = new WeakMap()
 

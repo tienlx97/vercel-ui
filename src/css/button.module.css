@@ -1,0 +1,325 @@
+.base {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  background: 0 0;
+  position: relative;
+  transform: translateZ(0);
+}
+
+.button {
+  display: flex;
+}
+
+.button[data-geist-button] {
+  outline-offset: 2px;
+  color: var(--themed-fg, var(--ds-background-100));
+  background: var(--themed-bg, var(--ds-gray-1000)) none;
+  padding: 0 var(--geist-gap-half);
+  max-width: 100%;
+  font-weight: 500;
+  font-size: var(--geist-form-font);
+  line-height: var(--geist-form-line-height);
+  height: var(--geist-form-height);
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  transition-property: border-color, background, color, transform, box-shadow;
+  transition-duration: .15s;
+  transition-timing-function: ease
+}
+
+.content {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 6px;
+  display: inline-block;
+  overflow: hidden
+}
+
+.content.flex {
+  justify-content: center;
+  align-items: center;
+  display: flex
+}
+
+.button svg {
+  flex-shrink: 0
+}
+
+.base::-moz-focus-inner {
+  border: 0
+}
+
+.content.start {
+  margin-right: auto
+}
+
+.content.grow {
+  margin-left: auto;
+  margin-right: auto
+}
+
+.content.flexGrow {
+  flex-grow: 1
+}
+
+.content.center {
+  justify-content: center;
+  align-items: center;
+  display: flex
+}
+
+.base[data-focus][data-geist-button] {
+  outline: var(--ds-focus-ring-outline)
+}
+
+.button[disabled][data-geist-button], .button.loading[data-geist-button], .button[aria-disabled=true] {
+  background: var(--ds-gray-100);
+  color: var(--ds-gray-700);
+  cursor: not-allowed;
+  --themed-border: var(--ds-gray-400) !important
+}
+
+.button[disabled][data-geist-button].tertiary, .button.loading[data-geist-button].tertiary, .button[aria-disabled=true].tertiary {
+  box-shadow: none;
+  opacity: .5;
+  background: 0 0
+}
+
+.shape[data-geist-button] {
+  width: var(--geist-form-height);
+  padding: 0
+}
+
+.rounded[data-geist-button], .rounded.large[data-geist-button] {
+  border-radius: 100px
+}
+
+.large[data-geist-button] {
+  height: var(--geist-form-large-height);
+  font-size: var(--geist-form-large-font);
+  line-height: var(--geist-form-large-line-height);
+  border-radius: 8px
+}
+
+.large.shape {
+  width: var(--geist-form-large-height)
+}
+
+.tiny[data-geist-button] {
+  border-radius: 4px;
+  width: 24px;
+  height: 24px
+}
+
+.tiny[data-geist-button] svg {
+  width: 16px;
+  height: 16px
+}
+
+.small[data-geist-button] {
+  font-size: var(--geist-form-small-font);
+  --spinner-size: 16px;
+  height: 32px
+}
+
+.small.shape[data-geist-button] {
+  width: var(--geist-form-small-height)
+}
+
+.button .prefix, .button .suffix {
+  flex-shrink: 0;
+  display: flex
+}
+
+.prefix {
+  justify-content: center;
+  align-items: center;
+  min-width: 20px;
+  margin-right: 10px
+}
+
+.suffix {
+  justify-content: center;
+  align-items: center;
+  min-width: 20px;
+  margin-left: 10px;
+  display: flex
+}
+
+.invert[data-hover][data-geist-button], .invert[data-active][data-geist-button], :is(.dark-theme .invert[data-hover][data-geist-button], .dark-theme .invert[data-active][data-geist-button]) {
+  background: var(--themed-hover-bg, #ccc)
+}
+
+.invert[data-hover][data-geist-button], .invert[data-active][data-geist-button] {
+  background: var(--themed-hover-bg, #383838)
+}
+
+.invert[data-hover][data-geist-button][aria-disabled=true], .invert[data-active][data-geist-button][aria-disabled=true] {
+  background: var(--ds-gray-100)
+}
+
+.shadow {
+  box-shadow: var(--ds-shadow-small)
+}
+
+.dark-theme .button.shadow:not([data-focus-visible-added]) {
+  box-shadow: none
+}
+
+.shadow[data-hover].secondary[data-geist-button] {
+  color: var(--geist-foreground)
+}
+
+.shadow[data-active][data-geist-button] {
+  box-shadow: var(--geist-shadow-small);
+  transform: translateY(1px)
+}
+
+.shadow[data-active][data-geist-button][data-hover] {
+  transform: none
+}
+
+.tertiary[data-geist-button] {
+  color: var(--themed-bg, var(--ds-gray-1000));
+  --themed-border: transparent;
+  --themed-hover-bg: var(--ds-gray-alpha-200);
+  --lighten-color: #fffc;
+  outline-offset: 0px;
+  background: 0 0
+}
+
+.dark-theme .tertiary[data-hover][data-geist-button] {
+  background-color: var(--ds-gray-alpha-200);
+  --themed-border: var(--ds-gray-alpha-200) !important
+}
+
+.tertiary[data-hover][data-geist-button] {
+  background-color: var(--ds-gray-alpha-200);
+  --themed-border: var(--ds-gray-alpha-200) !important
+}
+
+.dark-theme .tertiary[data-active][data-geist-button] {
+  --lighten-color: #000000b3
+}
+
+.secondary[data-geist-button] {
+  --themed-bg: var(--ds-background-100);
+  --themed-hover-bg: var(--ds-gray-alpha-200);
+  --themed-fg: var(--ds-gray-1000);
+  --themed-border: var(--ds-gray-400);
+  box-shadow: 0 0 0 1px var(--themed-border)
+}
+
+.secondary[data-geist-button].invert[data-geist-button][data-hover][data-geist-button] {
+  background-color: var(--ds-gray-100);
+  box-shadow: 0 0 0 1px var(--themed-border);
+  color: var(--themed-fg)
+}
+
+.secondary[data-geist-button].invert[data-geist-button][data-active][data-geist-button] {
+  color: var(--geist-foreground)
+}
+
+.secondary[data-geist-button].invert[data-geist-menu-button][data-hover][data-geist-menu-button] {
+  background-color: var(--ds-gray-100);
+  color: var(--themed-fg);
+  --themed-border: var(--ds-gray-alpha-500) !important
+}
+
+.secondary[data-geist-button].shadow[data-geist-button] {
+  box-shadow: var(--ds-shadow-border-small)
+}
+
+.secondary[data-geist-button].tertiary[data-geist-button] {
+  color: var(--themed-fg)
+}
+
+.secondary[data-geist-button].tertiary[data-geist-button][data-hover][data-geist-button] {
+  background-color: var(--ds-gray-alpha-200)
+}
+
+:is(.dark-theme .secondary[data-geist-button].invert[data-geist-button][data-hover][data-geist-button], .dark-theme .secondary[data-geist-menu-button].invert[data-geist-menu-button][data-hover][data-geist-menu-button]) {
+  background-color: var(--ds-gray-200)
+}
+
+.dark-theme .secondary[data-geist-menu-button].invert[data-geist-menu-button][data-hover][data-geist-menu-button] {
+  --themed-border: var(--ds-gray-alpha-500) !important
+}
+
+.customStyles[data-geist-button] {
+  background-color: var(--custom-bg-color) !important;
+  color: var(--custom-color) !important;
+  --themed-border: var(--custom-border-color) !important
+}
+
+.customHoverStyles[data-hover] {
+  background-color: var(--custom-bg-hover-color) !important;
+  color: var(--custom-hover-color) !important;
+  --themed-border: var(--custom-border-hover-color) !important
+}
+
+.circle[data-geist-button] {
+  border-radius: 100% !important
+}
+
+.button[data-prefix=true] .prefix, .button .prefix {
+  margin-right: 2px
+}
+
+.button .suffix {
+  margin-left: 2px
+}
+
+.button {
+  --x-padding: 10px;
+  --height: 40px;
+  font-size: 14px
+}
+
+.button.small {
+  --x-padding: 6px;
+  --height: 32px;
+  font-size: 14px
+}
+
+.button.large {
+  --x-padding: 14px;
+  --height: 48px;
+  font-size: 16px
+}
+
+.button[data-geist-button]:not(.shape) {
+  padding-left: var(--x-padding);
+  padding-right: var(--x-padding);
+  height: var(--height)
+}
+
+.button .responsive {
+  background: red !important
+}
+
+@media screen and (min-width: 0) {
+  .button.responsive {
+    --x-padding: var(--sm-x-padding);
+    --height: var(--sm-height);
+    font-size: 14px
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .button.responsive {
+    --x-padding: var(--md-x-padding);
+    --height: var(--md-height);
+    font-size: 14px
+  }
+}
+
+@media screen and (min-width: 961px) {
+  .button.responsive {
+    --x-padding: var(--lg-x-padding);
+    --height: var(--lg-height);
+    font-size: 16px
+  }
+}
