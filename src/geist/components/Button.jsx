@@ -1,18 +1,21 @@
+'use client'
+
 import clsx from 'clsx'
 import NextLink from 'next/link'
 
 import { Children, forwardRef, useEffect, useRef } from 'react'
 
-import { buttonStyles as styles } from '@/css/styles'
-import { useFocusable, useFocusRing } from '@/hooks/56562'
-import { usePress } from '@/hooks/84671'
-import { mergeProps } from '@/hooks/300597'
-import { useHover } from '@/hooks/434719'
-import { useNewType } from '@/hooks/446691'
-import { useDisabled } from '@/hooks/544652'
+import { buttonStyles as styles } from '@/geist/css/styles'
+import { useFocusable, useFocusRing } from '@/geist/hooks/56562'
+import { usePress } from '@/geist/hooks/84671'
+import { mergeProps } from '@/geist/hooks/300597'
+import { useHover } from '@/geist/hooks/434719'
+import { useNewType } from '@/geist/hooks/446691'
+import { useDisabled } from '@/geist/hooks/544652'
 import { getIxIconSize } from '@/utils/225642'
 import { filterDOMProps } from '@/utils/778315'
 import { mergeRefs } from '@/utils/962582'
+import { Spinner } from './Spinner'
 
 const IS_DEV = process.env.VERCEL_ENV !== 'production'
 
@@ -46,6 +49,7 @@ function getResponsiveSizeStyles(size) {
     lg: size.lg || size.md || size.sm,
   }
 
+  // eslint-disable-next-line unicorn/no-array-reduce
   return Object.keys(responsiveSize).reduce((result, breakpoint) => {
     const sizeKey = responsiveSize[breakpoint]
 
@@ -69,18 +73,18 @@ function validateSvgOnlyButton(children, svgOnly, props) {
   const [firstChild, ...restChildren] = Children.toArray(children)
 
   if (
-    firstChild
-    && restChildren.length < 1
-    && typeof firstChild === 'object'
-    && firstChild !== null
-    && 'type' in firstChild
+    firstChild &&
+    restChildren.length === 0 &&
+    typeof firstChild === 'object' &&
+    firstChild !== null &&
+    'type' in firstChild
   ) {
     const childType = firstChild.type
 
     const isNativeSvg = childType === 'svg'
 
-    const isIconComponent
-      = typeof childType !== 'string' && 'name' in childType && childType.name === 'Icon'
+    const isIconComponent =
+      typeof childType !== 'string' && 'name' in childType && childType.name === 'Icon'
 
     if (isNativeSvg || isIconComponent) {
       isSvgOnly = true
@@ -89,7 +93,7 @@ function validateSvgOnlyButton(children, svgOnly, props) {
 
   if (isSvgOnly && (!svgOnly || !props['aria-label'])) {
     throw new Error(
-      'SVG/Icon-only Buttons must include both an `aria-label` and the `svgOnly` prop.',
+      'SVG/Icon-only Buttons must include both an `aria-label` and the `svgOnly` prop.'
     )
   }
 }
@@ -114,38 +118,35 @@ function useButton(props, ref) {
 
   let additionalProps
 
-  if (elementType === 'button') {
-    additionalProps = {
-      type,
-      disabled: isDisabled,
+  additionalProps =
+    elementType === 'button'
+      ? {
+          type,
+          disabled: isDisabled,
 
-      form: props.form,
-      formAction: props.formAction,
-      formEncType: props.formEncType,
-      formMethod: props.formMethod,
-      formNoValidate: props.formNoValidate,
-      formTarget: props.formTarget,
+          form: props.form,
+          formAction: props.formAction,
+          formEncType: props.formEncType,
+          formMethod: props.formMethod,
+          formNoValidate: props.formNoValidate,
+          formTarget: props.formTarget,
 
-      name: props.name,
-      value: props.value,
-    }
-  }
-  else {
-    additionalProps = {
-      'role': 'button',
+          name: props.name,
+          value: props.value,
+        }
+      : {
+          role: 'button',
 
-      'href': elementType !== 'a' || isDisabled ? undefined : href,
-      'target': elementType === 'a' ? target : undefined,
+          href: elementType !== 'a' || isDisabled ? undefined : href,
+          target: elementType === 'a' ? target : undefined,
 
-      'type': elementType === 'input' ? type : undefined,
-      'disabled': elementType === 'input' ? isDisabled : undefined,
+          type: elementType === 'input' ? type : undefined,
+          disabled: elementType === 'input' ? isDisabled : undefined,
 
-      'aria-disabled':
-        isDisabled && elementType !== 'input' ? isDisabled : undefined,
+          'aria-disabled': isDisabled && elementType !== 'input' ? isDisabled : undefined,
 
-      'rel': elementType === 'a' ? rel : undefined,
-    }
-  }
+          rel: elementType === 'a' ? rel : undefined,
+        }
 
   const { pressProps, isPressed } = usePress({
     onPressStart,
@@ -162,6 +163,7 @@ function useButton(props, ref) {
   const { focusableProps } = useFocusable(props, ref)
 
   if (allowFocusWhenDisabled) {
+    // eslint-disable-next-line react-hooks/immutability
     focusableProps.tabIndex = isDisabled ? -1 : focusableProps.tabIndex
   }
 
@@ -170,7 +172,7 @@ function useButton(props, ref) {
     pressProps,
     filterDOMProps(props, {
       labelable: true,
-    }),
+    })
   )
 
   return {
@@ -229,7 +231,7 @@ const Button = forwardRef(
 
       ...restProps
     },
-    forwardedRef,
+    forwardedRef
   ) => {
     const disabledFromContext = useDisabled()
 
@@ -255,7 +257,7 @@ const Button = forwardRef(
         onPressStart: onMouseDown,
         onPressUp: onMouseUp,
       },
-      internalRef,
+      internalRef
     )
 
     if (IS_DEV) {
@@ -297,20 +299,20 @@ const Button = forwardRef(
       },
       hoverProps,
       focusProps,
-      buttonProps,
+      buttonProps
     )
 
     const isLinkComponent = Component === 'a' || Component === NextLink
 
-    const buttonClassName
-      = variant === 'unstyled'
+    const buttonClassName =
+      variant === 'unstyled'
         ? clsx(styles.base, className)
         : clsx(
             styles.base,
             styles.button,
             className,
 
-            type !== 'secondary' ? newTypeClassName : null,
+            type === 'secondary' ? null : newTypeClassName,
 
             {
               [styles.secondary || '']: type === 'secondary',
@@ -333,14 +335,14 @@ const Button = forwardRef(
               [styles.customHoverStyles || '']: Boolean(hoverStyle),
             },
 
-            styles[variant],
+            styles[variant]
           )
 
     const style = {
       ...restProps.style,
 
-      'minWidth': width,
-      'maxWidth': width,
+      minWidth: width,
+      maxWidth: width,
 
       ...(normalStyle
         ? {
@@ -385,13 +387,11 @@ const Button = forwardRef(
         type={typeName}
         tabIndex={0}
       >
-        {prefix || loading
-          ? (
-              <span className={styles.prefix}>
-                {loading ? <Spinner color="var(--accents-5)" size={getIxIconSize(size)} /> : prefix}
-              </span>
-            )
-          : null}
+        {prefix || loading ? (
+          <span className={styles.prefix}>
+            {loading ? <Spinner color="var(--accents-5)" size={getIxIconSize(size)} /> : prefix}
+          </span>
+        ) : null}
 
         <span
           className={clsx(styles.content, {
@@ -408,7 +408,7 @@ const Button = forwardRef(
         {suffix ? <span className={styles.suffix}>{suffix}</span> : null}
       </Component>
     )
-  },
+  }
 )
 
 Button.displayName = 'Button'

@@ -1,6 +1,6 @@
 'use client'
 
-import { useTheme } from '@/lib/next-themes/280036'
+import { useTheme } from '@/geist/@vercel/next-themes/280036'
 import { useSyncExternalStore } from 'react'
 
 const emptyUnsubscribe = () => {}

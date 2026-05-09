@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import { GeistThemeScript } from '@/lib/next-themes/GeistThemeScript'
-import { GeistProvider } from '@/lib/next-themes/GeistProvider'
+import { GeistThemeScript } from '@/geist/@vercel/next-themes/GeistThemeScript'
+import { GeistProvider } from '@/geist/@vercel/next-themes/GeistProvider'
 
 // import Script from 'next/script'
 // const themeScript = `

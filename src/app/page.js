@@ -1,7 +1,7 @@
 'use client'
 
-import Button from '@/components/Button'
-import { ThemeToggle } from '@/components/ThemeToggle'
+import Button from '@/geist/components/Button'
+import { ThemeToggle } from '@/geist/components/ThemeToggle'
 
 export default function Home() {
   return (

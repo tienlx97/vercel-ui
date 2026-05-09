@@ -1,4 +1,4 @@
-@import '../css/variable.css';
+@import '../geist/css/variable.css';
 
 @tailwind base;
 @tailwind components;
