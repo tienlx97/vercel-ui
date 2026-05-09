@@ -1,6 +1,6 @@
 'use client'
 
-import { ThemeProvider, useTheme } from '@/hooks/280036'
+import { ThemeProvider, useTheme } from './280036'
 import { TooltipProvider } from '@/Provider/908453'
 import { useSelectedLayoutSegments } from 'next/navigation'
 import { Suspense, useEffect } from 'react'

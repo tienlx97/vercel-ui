@@ -1,4 +1,4 @@
-import { ThemeScript } from '@/hooks/280036'
+import { ThemeScript } from './280036'
 
 const themeClassNames = {
   light: 'light-theme',

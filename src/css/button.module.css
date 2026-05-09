@@ -148,13 +148,28 @@
   display: flex
 }
 
-.invert[data-hover][data-geist-button], .invert[data-active][data-geist-button], :is(.dark-theme .invert[data-hover][data-geist-button], .dark-theme .invert[data-active][data-geist-button]) {
+/* .invert[data-hover][data-geist-button], .invert[data-active][data-geist-button] {
   background: var(--themed-hover-bg, #ccc)
 }
 
-.invert[data-hover][data-geist-button], .invert[data-active][data-geist-button] {
+:global(.dark-theme) .invert[data-hover][data-geist-button], :global(.dark-theme) .invert[data-active][data-geist-button] {
+  background: var(--themed-hover-bg, #383838)
+} */
+
+
+.invert[data-hover][data-geist-button],
+.invert[data-active][data-geist-button],
+:is(:global(.dark-theme) .invert[data-hover][data-geist-button], :global(.dark-theme) .invert[data-active][data-geist-button]) {
+  background: var(--themed-hover-bg, #ccc)
+}
+
+.invert[data-hover][data-geist-button],
+.invert[data-active][data-geist-button] {
   background: var(--themed-hover-bg, #383838)
 }
+
+
+
 
 .invert[data-hover][data-geist-button][aria-disabled=true], .invert[data-active][data-geist-button][aria-disabled=true] {
   background: var(--ds-gray-100)
@@ -164,7 +179,7 @@
   box-shadow: var(--ds-shadow-small)
 }
 
-.dark-theme .button.shadow:not([data-focus-visible-added]) {
+:global(.dark-theme) .button.shadow:not([data-focus-visible-added]) {
   box-shadow: none
 }
 
@@ -190,7 +205,7 @@
   background: 0 0
 }
 
-.dark-theme .tertiary[data-hover][data-geist-button] {
+:global(.dark-theme) .tertiary[data-hover][data-geist-button] {
   background-color: var(--ds-gray-alpha-200);
   --themed-border: var(--ds-gray-alpha-200) !important
 }
@@ -200,7 +215,7 @@
   --themed-border: var(--ds-gray-alpha-200) !important
 }
 
-.dark-theme .tertiary[data-active][data-geist-button] {
+:global(.dark-theme) .tertiary[data-active][data-geist-button] {
   --lighten-color: #000000b3
 }
 
@@ -240,11 +255,11 @@
   background-color: var(--ds-gray-alpha-200)
 }
 
-:is(.dark-theme .secondary[data-geist-button].invert[data-geist-button][data-hover][data-geist-button], .dark-theme .secondary[data-geist-menu-button].invert[data-geist-menu-button][data-hover][data-geist-menu-button]) {
+:is(:global(.dark-theme) .secondary[data-geist-button].invert[data-geist-button][data-hover][data-geist-button], :global(.dark-theme) .secondary[data-geist-menu-button].invert[data-geist-menu-button][data-hover][data-geist-menu-button]) {
   background-color: var(--ds-gray-200)
 }
 
-.dark-theme .secondary[data-geist-menu-button].invert[data-geist-menu-button][data-hover][data-geist-menu-button] {
+:global(.dark-theme) .secondary[data-geist-menu-button].invert[data-geist-menu-button][data-hover][data-geist-menu-button] {
   --themed-border: var(--ds-gray-alpha-500) !important
 }
 

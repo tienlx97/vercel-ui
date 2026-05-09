@@ -1,7 +1,7 @@
-import { GeistProvider } from '@/components/GeistProvider'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import { GeistThemeScript } from '@/components/GeistThemeScript'
+import { GeistThemeScript } from '@/lib/next-themes/GeistThemeScript'
+import { GeistProvider } from '@/lib/next-themes/GeistProvider'
 
 // import Script from 'next/script'
 // const themeScript = `
@@ -45,16 +45,16 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistSans.className} ${geistMono.variable} ${geistMono.className}`}
     >
-      <body>
+      <body className="tailwind tailwind-no-preflight">
         {/* <Script
           id="theme-script"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: themeScript }}
         /> */}
         <head>
-          <GeistThemeScript storageKey="geist-theme" />
+          <GeistThemeScript storageKey="zeit-theme" />
         </head>
-        <GeistProvider withScript={false} storageKey="geist-theme">
+        <GeistProvider withScript={false} storageKey="zeit-theme">
           {children}
         </GeistProvider>
       </body>
