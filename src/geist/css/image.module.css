@@ -1,0 +1,17 @@
+.intrinsic {
+  max-width: 100%;
+  height: auto
+}
+
+.responsive {
+  width: 100%;
+  height: auto
+}
+
+:global(.light-theme) .darkMode {
+  display: none !important
+}
+
+:global(.dark-theme) .lightMode {
+  display: none !important
+}

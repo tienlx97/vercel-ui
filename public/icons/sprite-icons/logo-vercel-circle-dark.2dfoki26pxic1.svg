@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='logo-vercel-circle' viewBox="0 0 16 16">
+      <g clip-path="url(#clip0_3908_2201853)"><circle cx="8" cy="8" r="8" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8 4.5L11.5 10.625H4.5L8 4.5Z" fill="currentColor"/></g><defs><clipPath id="clip0_3908_2201853"><rect width="16" height="16" fill="currentColor"/></clipPath></defs>
+    </symbol>
+  </defs>
+</svg>

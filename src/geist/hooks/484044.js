@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { ignoreFocusEvent } from '@/utils/335886'
-import { getOwnerDocument, getOwnerWindow } from '@/utils/496255'
-import { isAndroid, isMac } from '@/utils/717835'
+import { ignoreFocusEvent } from '@/geist/utils/335886'
+import { getOwnerDocument, getOwnerWindow } from '@/geist/utils/496255'
+import { isAndroid, isMac } from '@/geist/utils/717835'
 
 let currentInteractionModality = null // "keyboard" | "pointer" | "virtual" | null
 let hadEventBeforeFocus = false
@@ -39,9 +39,9 @@ function isVirtualClick(event) {
 
 function ensureFocusVisibilityTracking(scope) {
   if (
-    typeof window === 'undefined'
-    || typeof document === 'undefined'
-    || installedFocusWindows.has(getOwnerWindow(scope))
+    typeof window === 'undefined' ||
+    typeof document === 'undefined' ||
+    installedFocusWindows.has(getOwnerWindow(scope))
   ) {
     return
   }
@@ -59,12 +59,12 @@ function ensureFocusVisibilityTracking(scope) {
     hadEventBeforeFocus = true
 
     if (
-      event.metaKey
-      || (event.altKey && !isMac())
-      || event.ctrlKey
-      || event.key === 'Control'
-      || event.key === 'Shift'
-      || event.key === 'Meta'
+      event.metaKey ||
+      (event.altKey && !isMac()) ||
+      event.ctrlKey ||
+      event.key === 'Control' ||
+      event.key === 'Shift' ||
+      event.key === 'Meta'
     ) {
       return
     }
@@ -91,10 +91,10 @@ function ensureFocusVisibilityTracking(scope) {
 
   const onWindowFocus = (event) => {
     if (
-      event.target === window
-      || event.target === document
-      || ignoreFocusEvent
-      || !event.isTrusted
+      event.target === window ||
+      event.target === document ||
+      ignoreFocusEvent ||
+      !event.isTrusted
     ) {
       return
     }
@@ -129,9 +129,13 @@ function ensureFocusVisibilityTracking(scope) {
     ownerDocument.addEventListener('pointerup', onPointerEvent, true)
   }
 
-  ownerWindow.addEventListener('beforeunload', () => {
-    cleanupFocusVisibilityTracking(scope)
-  }, { once: true })
+  ownerWindow.addEventListener(
+    'beforeunload',
+    () => {
+      cleanupFocusVisibilityTracking(scope)
+    },
+    { once: true }
+  )
 
   installedFocusWindows.set(ownerWindow, {
     focus: originalFocus,
@@ -165,21 +169,9 @@ function cleanupFocusVisibilityTracking(scope, domReadyHandler) {
   ownerWindow.removeEventListener('blur', installed.onWindowBlur, false)
 
   if (typeof PointerEvent !== 'undefined') {
-    ownerDocument.removeEventListener(
-      'pointerdown',
-      installed.onPointerEvent,
-      true,
-    )
-    ownerDocument.removeEventListener(
-      'pointermove',
-      installed.onPointerEvent,
-      true,
-    )
-    ownerDocument.removeEventListener(
-      'pointerup',
-      installed.onPointerEvent,
-      true,
-    )
+    ownerDocument.removeEventListener('pointerdown', installed.onPointerEvent, true)
+    ownerDocument.removeEventListener('pointermove', installed.onPointerEvent, true)
+    ownerDocument.removeEventListener('pointerup', installed.onPointerEvent, true)
   }
 
   installedFocusWindows.delete(ownerWindow)
@@ -215,19 +207,17 @@ export function useFocusVisibleListener(listener, deps, options) {
       const KeyboardEventCtor = ownerWindow.KeyboardEvent
 
       const activeElement = ownerDocument.activeElement
-      const isTextEntryTarget
-        = !!options?.isTextInput
-          || (activeElement instanceof Input
-            && !NON_TEXT_INPUT_TYPES.has(activeElement.type))
-          || activeElement instanceof Textarea
-          || (activeElement instanceof ElementCtor
-            && activeElement.isContentEditable)
+      const isTextEntryTarget =
+        !!options?.isTextInput ||
+        (activeElement instanceof Input && !NON_TEXT_INPUT_TYPES.has(activeElement.type)) ||
+        activeElement instanceof Textarea ||
+        (activeElement instanceof ElementCtor && activeElement.isContentEditable)
 
-      const shouldAlwaysShowForTextInput
-        = isTextEntryTarget
-          && modality === 'keyboard'
-          && event instanceof KeyboardEventCtor
-          && !FOCUS_VISIBLE_SPECIAL_KEYS[event.key]
+      const shouldAlwaysShowForTextInput =
+        isTextEntryTarget &&
+        modality === 'keyboard' &&
+        event instanceof KeyboardEventCtor &&
+        !FOCUS_VISIBLE_SPECIAL_KEYS[event.key]
 
       if (shouldAlwaysShowForTextInput) {
         return

@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='device-desktop-alternate-small' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5.25C2.5 3.45507 3.95507 2 5.75 2H10.25C12.0449 2 13.5 3.45507 13.5 5.25V13.25V14H12.75H3.25H2.5V13.25V5.25ZM5.75 3.5C4.7835 3.5 4 4.2835 4 5.25V12.5H12V5.25C12 4.2835 11.2165 3.5 10.25 3.5H5.75ZM5 5.5C5 4.94772 5.44772 4.5 6 4.5H10C10.5523 4.5 11 4.94772 11 5.5V9H5V5.5ZM8.5 11.5H11V10H8.5V11.5Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

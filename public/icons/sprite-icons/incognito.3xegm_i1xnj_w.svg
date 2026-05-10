@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='incognito' viewBox="0 0 16 16">
+      <g clip-path="url(#clip0_3754_1783849)"><circle cx="3.5" cy="6.5" r="2.75" stroke="currentColor" stroke-width="1.5"/><path d="M0.848389 1.84835C1.55165 1.14509 2.50548 0.75 3.50004 0.75C4.4946 0.75 5.44843 1.14509 6.15169 1.84835" stroke="currentColor" stroke-width="1.5"/><path d="M9.84839 1.84835C10.5516 1.14509 11.5055 0.75 12.5 0.75C13.4946 0.75 14.4484 1.14509 15.1517 1.84835" stroke="currentColor" stroke-width="1.5"/><circle cx="12.5" cy="6.5" r="2.75" stroke="currentColor" stroke-width="1.5"/><path d="M6.25002 6.5H9.75002V11L8.50002 12.25H6" stroke="currentColor" stroke-width="1.5"/><path d="M12.5 16H2.5L3.04415 14.3675C3.31638 13.5509 4.08066 13 4.94152 13H10.0585C10.9193 13 11.6836 13.5509 11.9558 14.3675L12.5 16Z" fill="currentColor"/></g><defs><clipPath id="clip0_3754_1783849"><rect width="16" height="16" fill="white"/></clipPath></defs>
+    </symbol>
+  </defs>
+</svg>

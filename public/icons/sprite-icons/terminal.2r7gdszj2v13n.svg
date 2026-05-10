@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='terminal' viewBox="0 0 16 16">
+      <g clip-path="url(#clip0_53_426746)"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.53032 12.7803L0.999991 13.3107L-0.0606689 12.25L0.469661 11.7197L4.18933 7.99999L0.469661 4.28032L-0.0606689 3.74999L0.999991 2.68933L1.53032 3.21966L5.60355 7.29289C5.99407 7.68341 5.99407 8.31658 5.60354 8.7071L1.53032 12.7803ZM8.74999 12.5H7.99999V14H8.74999H15.25H16V12.5H15.25H8.74999Z" fill="currentColor"/></g><defs><clipPath id="clip0_53_426746"><rect width="16" height="16" fill="white"/></clipPath></defs>
+    </symbol>
+  </defs>
+</svg>

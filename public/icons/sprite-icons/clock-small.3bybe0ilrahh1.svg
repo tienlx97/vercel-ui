@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='clock-small' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 8C12.5 10.4853 10.4853 12.5 8 12.5C5.51472 12.5 3.5 10.4853 3.5 8C3.5 5.51472 5.51472 3.5 8 3.5C10.4853 3.5 12.5 5.51472 12.5 8ZM14 8C14 11.3137 11.3137 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8ZM8.75 5.75V5H7.25V5.75V8V8.75H8.75V8V5.75Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

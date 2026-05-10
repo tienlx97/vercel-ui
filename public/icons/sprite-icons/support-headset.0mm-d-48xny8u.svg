@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='support-headset' viewBox="0 0 16 16">
+      <path d="M14.25 9V7C14.25 3.54822 11.4518 0.75 8 0.75V0.75C4.54822 0.75 1.75 3.54822 1.75 7V9" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 15.2499H11.751C13.1318 15.2499 14.251 14.1307 14.251 12.7499V8.5" stroke="currentColor" stroke-width="1.5"/><path d="M4 6.75H5.25V11.25H4C2.75736 11.25 1.75 10.2426 1.75 9C1.75 7.75736 2.75736 6.75 4 6.75Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 6.75C13.2426 6.75 14.25 7.75736 14.25 9C14.25 10.2426 13.2426 11.25 12 11.25H10.75V6.75H12Z" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 14C6.5 13.4477 6.94772 13 7.5 13H8.5C9.05228 13 9.5 13.4477 9.5 14V15H6.5V14Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

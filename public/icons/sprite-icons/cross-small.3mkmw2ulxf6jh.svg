@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='cross-small' viewBox="0 0 16 16">
+      <path d="M11.5604 5.49988L9.06042 7.99988L11.5604 10.4999L10.4999 11.5604L7.99988 9.06042L5.49988 11.5604L4.43933 10.4999L6.93933 7.99988L4.43933 5.49988L5.49988 4.43933L7.99988 6.93933L10.4999 4.43933L11.5604 5.49988Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

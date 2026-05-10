@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='arrow-left' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.46966 13.7803L6.99999 14.3107L8.06065 13.25L7.53032 12.7197L3.56065 8.74999H14.25H15V7.24999H14.25H3.56065L7.53032 3.28032L8.06065 2.74999L6.99999 1.68933L6.46966 2.21966L1.39644 7.29288C1.00592 7.68341 1.00592 8.31657 1.39644 8.7071L6.46966 13.7803Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

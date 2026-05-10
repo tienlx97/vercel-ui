@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='logo-acme' viewBox="0 0 16 16">
+      <g clip-path="url(#clip0_4701_1804856)"><circle cx="8" cy="8" r="8" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M9.06754 6.36819L8 4.5L4.5 10.625H6.63507L9.06754 6.36819ZM10.0753 8.13181L8.65064 10.625H11.5L10.0753 8.13181Z" fill="currentColor"/></g><defs><clipPath id="clip0_4701_1804856"><rect width="16" height="16" fill="currentColor"/></clipPath></defs>
+    </symbol>
+  </defs>
+</svg>

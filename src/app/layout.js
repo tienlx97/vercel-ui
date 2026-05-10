@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { GeistThemeScript } from '@/geist/@vercel/next-themes/GeistThemeScript'
 import { GeistProvider } from '@/geist/@vercel/next-themes/GeistProvider'
+import { AppShell } from './AppShell'
 
 // import Script from 'next/script'
 // const themeScript = `
@@ -55,7 +56,7 @@ export default function RootLayout({ children }) {
           <GeistThemeScript storageKey="zeit-theme" />
         </head>
         <GeistProvider withScript={false} storageKey="zeit-theme">
-          {children}
+          <AppShell>{children}</AppShell>
         </GeistProvider>
       </body>
     </html>

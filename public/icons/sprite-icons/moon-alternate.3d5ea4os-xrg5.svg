@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='moon-alternate' viewBox="0 0 16 16">
+      <g clip-path="url(#clip0_3377_1541693)"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM9.45565 9.44951C11.6919 7.21327 12.1441 4.03983 10.4657 2.36144C8.78733 0.683045 5.61389 1.13527 3.37765 3.37151C1.14141 5.60775 0.689186 8.78119 2.36758 10.4596C4.04597 12.138 7.21941 11.6858 9.45565 9.44951Z" fill="currentColor"/></g><defs><clipPath id="clip0_3377_1541693"><rect width="16" height="16" fill="white"/></clipPath></defs>
+    </symbol>
+  </defs>
+</svg>

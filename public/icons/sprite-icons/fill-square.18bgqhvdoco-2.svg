@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='fill-square' viewBox="0 0 16 16">
+      <g clip-path="url(#clip0_1682_1398748)"><path d="M2.5 0.75H13.5C14.4665 0.75 15.25 1.5335 15.25 2.5V13.5C15.25 14.4665 14.4665 15.25 13.5 15.25H2.5C1.5335 15.25 0.75 14.4665 0.75 13.5V2.5C0.75 1.5335 1.5335 0.75 2.5 0.75Z" stroke="currentColor" stroke-width="1.5"/><path d="M15 4L4.5 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><path d="M14.5 10L10 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><path d="M12 1L1.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><path d="M6 1.5L1.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></g><defs><clipPath id="clip0_1682_1398748"><rect width="16" height="16" fill="white"/></clipPath></defs>
+    </symbol>
+  </defs>
+</svg>

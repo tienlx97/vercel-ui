@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { getOwnerDocument } from '@/utils/496255'
-import { nodeContains } from '@/utils/755167'
+import { getOwnerDocument } from '@/geist/utils/496255'
+import { nodeContains } from '@/geist/utils/755167'
 import { useGlobalListeners } from './489842'
 
 let hasRecentTouchPointerUp = false
@@ -21,10 +21,7 @@ function setupGlobalTouchPointerTracking() {
     return
   }
 
-  if (
-    activeHoverHookCount === 0
-    && typeof PointerEvent !== 'undefined'
-  ) {
+  if (activeHoverHookCount === 0 && typeof PointerEvent !== 'undefined') {
     document.addEventListener('pointerup', registerRecentTouchPointerUp)
   }
 
@@ -33,22 +30,14 @@ function setupGlobalTouchPointerTracking() {
   return () => {
     activeHoverHookCount -= 1
 
-    if (
-      activeHoverHookCount <= 0
-      && typeof PointerEvent !== 'undefined'
-    ) {
+    if (activeHoverHookCount <= 0 && typeof PointerEvent !== 'undefined') {
       document.removeEventListener('pointerup', registerRecentTouchPointerUp)
     }
   }
 }
 
 export function useHover(options) {
-  const {
-    onHoverStart,
-    onHoverChange,
-    onHoverEnd,
-    isDisabled,
-  } = options
+  const { onHoverStart, onHoverChange, onHoverEnd, isDisabled } = options
 
   const [isHovered, setIsHovered] = useState(false)
 
@@ -61,10 +50,7 @@ export function useHover(options) {
 
   useEffect(setupGlobalTouchPointerTracking, [])
 
-  const {
-    addGlobalListener,
-    removeAllGlobalListeners,
-  } = useGlobalListeners()
+  const { addGlobalListener, removeAllGlobalListeners } = useGlobalListeners()
 
   const { hoverProps, triggerHoverEnd } = useMemo(() => {
     const endHover = (event, pointerType) => {
@@ -122,10 +108,10 @@ export function useHover(options) {
       state.pointerType = pointerType
 
       if (
-        isDisabled
-        || pointerType === 'touch'
-        || state.isHovered
-        || !event.currentTarget.contains(event.target)
+        isDisabled ||
+        pointerType === 'touch' ||
+        state.isHovered ||
+        !event.currentTarget.contains(event.target)
       ) {
         return
       }
@@ -138,15 +124,11 @@ export function useHover(options) {
         getOwnerDocument(event.target),
         'pointerover',
         (globalEvent) => {
-          if (
-            state.isHovered
-            && state.target
-            && !nodeContains(state.target, globalEvent.target)
-          ) {
+          if (state.isHovered && state.target && !nodeContains(state.target, globalEvent.target)) {
             endHover(globalEvent, globalEvent.pointerType)
           }
         },
-        { capture: true },
+        { capture: true }
       )
 
       if (onHoverStart) {
@@ -180,10 +162,7 @@ export function useHover(options) {
 
   useEffect(() => {
     if (isDisabled) {
-      triggerHoverEnd(
-        { currentTarget: state.target },
-        state.pointerType,
-      )
+      triggerHoverEnd({ currentTarget: state.target }, state.pointerType)
     }
   }, [isDisabled, state, triggerHoverEnd])
 

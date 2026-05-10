@@ -3,9 +3,9 @@
 import React from 'react'
 import Button from './Button'
 import NextLink from 'next/link'
-import { ExternalSmall } from '@/utils/749291'
-import { usePrefetchProps } from '@/utils/777155'
-import { canPrefetch } from '@/utils/939051'
+import { ExternalSmall } from '@/geist/utils/749291'
+import { usePrefetchProps } from '@/geist/utils/777155'
+import { canPrefetch } from '@/geist/utils/939051'
 
 const ButtonWrapper = React.forwardRef(function ButtonWrapper(
   { children, onClick, onMouseEnter, ...props },

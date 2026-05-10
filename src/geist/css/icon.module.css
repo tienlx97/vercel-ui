@@ -1,0 +1,55 @@
+.wrapper {
+  width: var(--size);
+  height: var(--size);
+  position: relative
+}
+
+.icon {
+  aspect-ratio: 1;
+  display: flex;
+  position: absolute
+}
+
+.icon[data-background=true] {
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden
+}
+
+.dark-theme .icon[data-background=true] {
+  background-color: #000;
+  border-color: #000
+}
+
+.icon[data-background=true][data-git-type=github] {
+  background-color: #fff
+}
+
+.dark-theme .icon[data-background=true][data-git-type=github] {
+  background-color: #000
+}
+
+.icon[data-background=true][data-git-type=github] svg {
+  transform: scale(1.15)
+}
+
+.icon[data-background=true][data-git-type=bitbucket] {
+  background-color: #0052cc
+}
+
+.icon[data-background=true][data-git-type=bitbucket] svg {
+  color: #fff;
+  transform: scale(.65)
+}
+
+.icon[data-background=true][data-git-type=gitlab] {
+  background-color: #6b4fbb
+}
+
+.icon[data-background=true][data-git-type=gitlab] svg {
+  transform: scale(.75)
+}

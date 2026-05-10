@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='notebook' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.28497 1.5H13V12C13 12.5523 12.5523 13 12 13H6.28497L6.28497 1.5ZM5.03497 1.5H3V12C3 12.5523 3.44772 13 4 13H5.03497L5.03497 1.5ZM5.03497 14.5H4C2.61929 14.5 1.5 13.3807 1.5 12V1.5V0H3H13H14.5V1.5V12C14.5 13.3807 13.3807 14.5 12 14.5H6.28497V15V15.625H5.03497V15V14.5ZM8 3.75H8.625H10.375H11V5H10.375H8.625H8V3.75ZM8.625 6.745H8V7.995H8.625H10.375H11V6.745H10.375H8.625Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

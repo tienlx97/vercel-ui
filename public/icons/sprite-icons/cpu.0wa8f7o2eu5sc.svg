@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='cpu' viewBox="0 0 16 16">
+      <g clip-path="url(#clip0_53_260764)"><path fill-rule="evenodd" clip-rule="evenodd" d="M9 2H7V0.75V0H5.5V0.75V2H3C2.44772 2 2 2.44772 2 3V5.5H0.75H0V7H0.75H2V9H0.75H0V10.5H0.75H2V13C2 13.5523 2.44772 14 3 14H5.5V15.25V16H7V15.25V14H9V15.25V16H10.5V15.25V14H13C13.5523 14 14 13.5523 14 13V10.5H15.25H16V9H15.25H14V7H15.25H16V5.5H15.25H14V3C14 2.44772 13.5523 2 13 2H10.5V0.75V0H9V0.75V2ZM3.5 3.5V12.5H12.5V3.5H3.5Z" fill="currentColor"/></g><defs><clipPath id="clip0_53_260764"><rect width="16" height="16" fill="white"/></clipPath></defs>
+    </symbol>
+  </defs>
+</svg>

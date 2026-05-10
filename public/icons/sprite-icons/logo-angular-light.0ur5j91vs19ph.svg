@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='logo-angular' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 2.656L8 0L15.5 2.656L14.3561 12.504L8 16L1.64393 12.504L0.5 2.656ZM3.31152 12.208L8.00003 1.768L12.6724 12.208H10.9243L9.98177 9.872H6.00218L5.05964 12.208H3.31152ZM8.00003 5.16L6.63053 8.432H9.36952L8.00003 5.16Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

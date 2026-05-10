@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='plus' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M8.75 2.25V1.5H7.25V2.25V7.25H2.25H1.5V8.75H2.25H7.25V13.75V14.5H8.75V13.75V8.75H13.75H14.5V7.25H13.75H8.75V2.25Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

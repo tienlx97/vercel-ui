@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='alignment-right' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M1.75 2H1V3.5H1.75H14.25H15V2H14.25H1.75ZM6 7H6.75H14.25H15V8.5H14.25H6.75H6V7ZM4 12H4.75H14.25H15V13.5H14.25H4.75H4V12Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='skip-back-fill' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M4.08144 8.21086C3.92706 8.11262 3.92706 7.88727 4.08144 7.78903L14.3658 1.24445C14.5322 1.13854 14.75 1.25809 14.75 1.45536L14.75 14.5445C14.75 14.7418 14.5322 14.8614 14.3658 14.7554L4.08144 8.21086ZM0.75 1.99994V1.24994H2.25V1.99994V13.9999V14.7499H0.75V13.9999V1.99994Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

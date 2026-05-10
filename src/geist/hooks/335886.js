@@ -1,5 +1,5 @@
 import { useCallback, useEffectEvent, useLayoutEffect, useRef } from 'react'
-import { getOwnerWindow } from '@/utils/496255'
+import { getOwnerWindow } from '@/geist/utils/496255'
 
 // eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 let ignoreFocusEvent = false
@@ -43,47 +43,54 @@ export function useSyntheticBlurEvent(onBlur) {
     }
   })
 
-  return useCallback((event) => {
-    const target = event.target
+  return useCallback(
+    (event) => {
+      const target = event.target
 
-    if (
-      target instanceof HTMLButtonElement
-      || target instanceof HTMLInputElement
-      || target instanceof HTMLTextAreaElement
-      || target instanceof HTMLSelectElement
-    ) {
-      stateRef.current.isFocused = true
+      if (
+        target instanceof HTMLButtonElement ||
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        target instanceof HTMLSelectElement
+      ) {
+        stateRef.current.isFocused = true
 
-      target.addEventListener('focusout', (nativeEvent) => {
-        stateRef.current.isFocused = false
+        target.addEventListener(
+          'focusout',
+          (nativeEvent) => {
+            stateRef.current.isFocused = false
 
-        if (target.disabled) {
-          stableOnBlur(createSyntheticEvent(nativeEvent))
-        }
+            if (target.disabled) {
+              stableOnBlur(createSyntheticEvent(nativeEvent))
+            }
 
-        if (stateRef.current.observer) {
-          stateRef.current.observer.disconnect()
-          stateRef.current.observer = null
-        }
-      }, { once: true })
+            if (stateRef.current.observer) {
+              stateRef.current.observer.disconnect()
+              stateRef.current.observer = null
+            }
+          },
+          { once: true }
+        )
 
-      stateRef.current.observer = new MutationObserver(() => {
-        if (stateRef.current.isFocused && target.disabled) {
-          stateRef.current.observer?.disconnect()
-          stateRef.current.observer = null
+        stateRef.current.observer = new MutationObserver(() => {
+          if (stateRef.current.isFocused && target.disabled) {
+            stateRef.current.observer?.disconnect()
+            stateRef.current.observer = null
 
-          const blurEvent = new FocusEvent('blur')
-          setEventTarget(blurEvent, target)
-          stableOnBlur(createSyntheticEvent(blurEvent))
-        }
-      })
+            const blurEvent = new FocusEvent('blur')
+            setEventTarget(blurEvent, target)
+            stableOnBlur(createSyntheticEvent(blurEvent))
+          }
+        })
 
-      stateRef.current.observer.observe(target, {
-        attributes: true,
-        attributeFilter: ['disabled'],
-      })
-    }
-  }, [stableOnBlur])
+        stateRef.current.observer.observe(target, {
+          attributes: true,
+          attributeFilter: ['disabled'],
+        })
+      }
+    },
+    [stableOnBlur]
+  )
 }
 
 function isFocusable(element) {
@@ -105,9 +112,9 @@ function isFocusable(element) {
       'embed',
       'audio[controls]',
       'video[controls]',
-      '[contenteditable]:not([contenteditable^=\'false\'])',
+      "[contenteditable]:not([contenteditable^='false'])",
       '[tabindex]:not([disabled]):not([hidden])',
-    ].join(','),
+    ].join(',')
   )
 }
 

@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='diamond-small' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.93934 4.06066L8 3L9.06066 4.06066L11.9393 6.93934L13 8L11.9393 9.06066L9.06066 11.9393L8 13L6.93934 11.9393L4.06066 9.06066L3 8L4.06066 6.93934L6.93934 4.06066ZM5.12132 8L8 10.8787L10.8787 8L8 5.12132L5.12132 8Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

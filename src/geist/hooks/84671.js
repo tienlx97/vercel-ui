@@ -1,10 +1,18 @@
-import { createContext, useContext, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react'
-import { chain } from '@/utils/33566'
-import { getOwnerDocument, getOwnerWindow } from '@/utils/496255'
-import { isVirtualClick, isVirtualPointerEvent } from '@/utils/526608'
-import { isFirefox, isIOS, isIPad, isMac, isWebKit } from '@/utils/717835'
-import { getEventTarget, nodeContains } from '@/utils/755167'
-import { restoreTextSelection } from '@/utils/restoreTextSelection'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import { chain } from '@/geist/utils/33566'
+import { getOwnerDocument, getOwnerWindow } from '@/geist/utils/496255'
+import { isVirtualClick, isVirtualPointerEvent } from '@/geist/utils/526608'
+import { isFirefox, isIOS, isIPad, isMac, isWebKit } from '@/geist/utils/717835'
+import { getEventTarget, nodeContains } from '@/geist/utils/755167'
+import { restoreTextSelection } from '@/geist/utils/restoreTextSelection'
 import { mergeProps } from './300597'
 import { createSyntheticEvent, preventFocus, setEventTarget } from './335886'
 import { useGlobalListeners } from './489842'
@@ -31,8 +39,7 @@ class PressEvent {
       if (clientX != null && clientY != null) {
         x = clientX - rect.left
         y = clientY - rect.top
-      }
-      else {
+      } else {
         x = rect.width / 2
         y = rect.height / 2
       }
@@ -94,11 +101,7 @@ function isValidKeyboardPress(event, element) {
   const { key, code } = event
   const role = element.getAttribute('role')
 
-  const isPressKey
-    = key === 'Enter'
-      || key === ' '
-      || key === 'Spacebar'
-      || code === 'Space'
+  const isPressKey = key === 'Enter' || key === ' ' || key === 'Spacebar' || code === 'Space'
 
   if (!isPressKey) {
     return false
@@ -107,9 +110,9 @@ function isValidKeyboardPress(event, element) {
   const ownerWindow = getOwnerWindow(element)
 
   if (
-    (element instanceof ownerWindow.HTMLInputElement && !isTriggerInputType(element, key))
-    || element instanceof ownerWindow.HTMLTextAreaElement
-    || element.isContentEditable
+    (element instanceof ownerWindow.HTMLInputElement && !isTriggerInputType(element, key)) ||
+    element instanceof ownerWindow.HTMLTextAreaElement ||
+    element.isContentEditable
   ) {
     return false
   }
@@ -193,21 +196,16 @@ function focusWithoutScrolling(element) {
 function openLinkViaKeyboard(element, keyboardEvent, markOpening = true) {
   let { metaKey, ctrlKey, altKey, shiftKey } = keyboardEvent
 
-  if (
-    isFirefox()
-    && window.event?.type?.startsWith('key')
-    && element.target === '_blank'
-  ) {
+  if (isFirefox() && window.event?.type?.startsWith('key') && element.target === '_blank') {
     if (isMac()) {
       metaKey = true
-    }
-    else {
+    } else {
       ctrlKey = true
     }
   }
 
-  const clickEvent
-    = isWebKit() && isMac() && !isIPad() && true
+  const clickEvent =
+    isWebKit() && isMac() && !isIPad() && true
       ? new KeyboardEvent('keydown', {
           keyIdentifier: 'Enter',
           metaKey,
@@ -264,10 +262,7 @@ export function usePress(props) {
     metaKeyEvents: undefined,
   })
 
-  const {
-    addGlobalListener,
-    removeAllGlobalListeners,
-  } = useGlobalListeners()
+  const { addGlobalListener, removeAllGlobalListeners } = useGlobalListeners()
 
   const triggerPressStart = useEffectEvent((event, pointerType) => {
     const state = stateRef.current
@@ -296,44 +291,42 @@ export function usePress(props) {
     return shouldStopPropagation
   })
 
-  const triggerPressEnd = useEffectEvent(
-    (event, pointerType, shouldTriggerPress = true) => {
-      const state = stateRef.current
+  const triggerPressEnd = useEffectEvent((event, pointerType, shouldTriggerPress = true) => {
+    const state = stateRef.current
 
-      if (!state.didFirePressStart) {
-        return false
+    if (!state.didFirePressStart) {
+      return false
+    }
+
+    state.didFirePressStart = false
+    state.isTriggeringEvent = true
+
+    let shouldStopPropagation = true
+
+    if (onPressEnd) {
+      const pressEndEvent = new PressEvent('pressend', pointerType, event)
+      onPressEnd(pressEndEvent)
+      shouldStopPropagation = pressEndEvent.shouldStopPropagation
+    }
+
+    if (onPressChange) {
+      onPressChange(false)
+    }
+
+    setIsPressedState(false)
+
+    if (onPress && shouldTriggerPress && !isDisabled) {
+      const pressEvent = new PressEvent('press', pointerType, event)
+      onPress(pressEvent)
+
+      if (shouldStopPropagation) {
+        shouldStopPropagation = pressEvent.shouldStopPropagation
       }
+    }
 
-      state.didFirePressStart = false
-      state.isTriggeringEvent = true
-
-      let shouldStopPropagation = true
-
-      if (onPressEnd) {
-        const pressEndEvent = new PressEvent('pressend', pointerType, event)
-        onPressEnd(pressEndEvent)
-        shouldStopPropagation = pressEndEvent.shouldStopPropagation
-      }
-
-      if (onPressChange) {
-        onPressChange(false)
-      }
-
-      setIsPressedState(false)
-
-      if (onPress && shouldTriggerPress && !isDisabled) {
-        const pressEvent = new PressEvent('press', pointerType, event)
-        onPress(pressEvent)
-
-        if (shouldStopPropagation) {
-          shouldStopPropagation = pressEvent.shouldStopPropagation
-        }
-      }
-
-      state.isTriggeringEvent = false
-      return shouldStopPropagation
-    },
-  )
+    state.isTriggeringEvent = false
+    return shouldStopPropagation
+  })
 
   const triggerPressUp = useEffectEvent((event, pointerType) => {
     const state = stateRef.current
@@ -415,11 +408,7 @@ export function usePress(props) {
           event.preventDefault()
         }
 
-        triggerPressEnd(
-          createPointLikeEvent(state.target, event),
-          'keyboard',
-          releasedInside,
-        )
+        triggerPressEnd(createPointLikeEvent(state.target, event), 'keyboard', releasedInside)
 
         if (releasedInside) {
           dispatchSyntheticClickToProp(event, state.target)
@@ -428,10 +417,10 @@ export function usePress(props) {
         removeAllGlobalListeners()
 
         if (
-          event.key !== 'Enter'
-          && isHTMLLink(state.target)
-          && nodeContains(state.target, actualTarget)
-          && !event[LINK_CLICKED_SYMBOL]
+          event.key !== 'Enter' &&
+          isHTMLLink(state.target) &&
+          nodeContains(state.target, actualTarget) &&
+          !event[LINK_CLICKED_SYMBOL]
         ) {
           event[LINK_CLICKED_SYMBOL] = true
           openLinkViaKeyboard(state.target, event, false)
@@ -439,8 +428,7 @@ export function usePress(props) {
 
         state.isPressed = false
         state.metaKeyEvents?.delete(event.key)
-      }
-      else if (event.key === 'Meta' && state.metaKeyEvents?.size) {
+      } else if (event.key === 'Meta' && state.metaKeyEvents?.size) {
         const bufferedMetaEvents = state.metaKeyEvents
         state.metaKeyEvents = undefined
 
@@ -453,8 +441,8 @@ export function usePress(props) {
     const props = {
       onKeyDown(event) {
         if (
-          isValidKeyboardPress(event.nativeEvent, event.currentTarget)
-          && nodeContains(event.currentTarget, getEventTarget(event.nativeEvent))
+          isValidKeyboardPress(event.nativeEvent, event.currentTarget) &&
+          nodeContains(event.currentTarget, getEventTarget(event.nativeEvent))
         ) {
           if (shouldPreventKeyDefault(getEventTarget(event.nativeEvent), event.key)) {
             event.preventDefault()
@@ -473,23 +461,17 @@ export function usePress(props) {
             addGlobalListener(
               getOwnerDocument(event.currentTarget),
               'keyup',
-              chain(
-                (keyupEvent) => {
-                  if (
-                    isValidKeyboardPress(keyupEvent, keyboardTarget)
-                    && !keyupEvent.repeat
-                    && nodeContains(keyboardTarget, getEventTarget(keyupEvent))
-                    && state.target
-                  ) {
-                    triggerPressUp(
-                      createPointLikeEvent(state.target, keyupEvent),
-                      'keyboard',
-                    )
-                  }
-                },
-                handleKeyUp,
-              ),
-              true,
+              chain((keyupEvent) => {
+                if (
+                  isValidKeyboardPress(keyupEvent, keyboardTarget) &&
+                  !keyupEvent.repeat &&
+                  nodeContains(keyboardTarget, getEventTarget(keyupEvent)) &&
+                  state.target
+                ) {
+                  triggerPressUp(createPointLikeEvent(state.target, keyupEvent), 'keyboard')
+                }
+              }, handleKeyUp),
+              true
             )
           }
 
@@ -500,19 +482,18 @@ export function usePress(props) {
           if (event.metaKey && isMac()) {
             state.metaKeyEvents?.set(event.key, event.nativeEvent)
           }
-        }
-        else if (event.key === 'Meta') {
+        } else if (event.key === 'Meta') {
           state.metaKeyEvents = new Map()
         }
       },
 
       onClick(event) {
         if (
-          (!event || nodeContains(event.currentTarget, getEventTarget(event.nativeEvent)))
-          && event
-          && event.button === 0
-          && !state.isTriggeringEvent
-          && !openLinkViaKeyboard.isOpening
+          (!event || nodeContains(event.currentTarget, getEventTarget(event.nativeEvent))) &&
+          event &&
+          event.button === 0 &&
+          !state.isTriggeringEvent &&
+          !openLinkViaKeyboard.isOpening
         ) {
           let shouldStopPropagation = true
 
@@ -521,9 +502,9 @@ export function usePress(props) {
           }
 
           if (
-            !state.ignoreEmulatedMouseEvents
-            && !state.isPressed
-            && (state.pointerType === 'virtual' || isVirtualClick(event.nativeEvent))
+            !state.ignoreEmulatedMouseEvents &&
+            !state.isPressed &&
+            (state.pointerType === 'virtual' || isVirtualClick(event.nativeEvent))
           ) {
             const didStart = triggerPressStart(event, 'virtual')
             const didPressUp = triggerPressUp(event, 'virtual')
@@ -531,20 +512,18 @@ export function usePress(props) {
 
             triggerClickProp(event)
             shouldStopPropagation = didStart && didPressUp && didEnd
-          }
-          else if (state.isPressed && state.pointerType !== 'keyboard') {
-            const pointerType
-              = state.pointerType || event.nativeEvent.pointerType || 'virtual'
+          } else if (state.isPressed && state.pointerType !== 'keyboard') {
+            const pointerType = state.pointerType || event.nativeEvent.pointerType || 'virtual'
 
             const didPressUp = triggerPressUp(
               createPointLikeEvent(event.currentTarget, event),
-              pointerType,
+              pointerType
             )
 
             const didEnd = triggerPressEnd(
               createPointLikeEvent(event.currentTarget, event),
               pointerType,
-              true,
+              true
             )
 
             shouldStopPropagation = didPressUp && didEnd
@@ -566,8 +545,8 @@ export function usePress(props) {
     if (typeof PointerEvent !== 'undefined') {
       props.onPointerDown = (event) => {
         if (
-          event.button !== 0
-          || !nodeContains(event.currentTarget, getEventTarget(event.nativeEvent))
+          event.button !== 0 ||
+          !nodeContains(event.currentTarget, getEventTarget(event.nativeEvent))
         ) {
           return
         }
@@ -601,14 +580,14 @@ export function usePress(props) {
             getOwnerDocument(event.currentTarget),
             'pointerup',
             handleGlobalPointerUp,
-            false,
+            false
           )
 
           addGlobalListener(
             getOwnerDocument(event.currentTarget),
             'pointercancel',
             handleGlobalPointerCancel,
-            false,
+            false
           )
         }
 
@@ -619,8 +598,8 @@ export function usePress(props) {
 
       props.onMouseDown = (event) => {
         if (
-          nodeContains(event.currentTarget, getEventTarget(event.nativeEvent))
-          && event.button === 0
+          nodeContains(event.currentTarget, getEventTarget(event.nativeEvent)) &&
+          event.button === 0
         ) {
           if (preventFocusOnPress) {
             const dispose = preventFocus(event.target)
@@ -635,9 +614,9 @@ export function usePress(props) {
 
       props.onPointerUp = (event) => {
         if (
-          nodeContains(event.currentTarget, getEventTarget(event.nativeEvent))
-          && state.pointerType !== 'virtual'
-          && (event.button !== 0 || !state.isPressed)
+          nodeContains(event.currentTarget, getEventTarget(event.nativeEvent)) &&
+          state.pointerType !== 'virtual' &&
+          (event.button !== 0 || !state.isPressed)
         ) {
           triggerPressUp(event, state.pointerType || event.pointerType)
         }
@@ -645,32 +624,25 @@ export function usePress(props) {
 
       props.onPointerEnter = (event) => {
         if (
-          event.pointerId === state.activePointerId
-          && state.target
-          && !state.isOverTarget
-          && state.pointerType != null
+          event.pointerId === state.activePointerId &&
+          state.target &&
+          !state.isOverTarget &&
+          state.pointerType != null
         ) {
           state.isOverTarget = true
-          triggerPressStart(
-            createPointLikeEvent(state.target, event),
-            state.pointerType,
-          )
+          triggerPressStart(createPointLikeEvent(state.target, event), state.pointerType)
         }
       }
 
       props.onPointerLeave = (event) => {
         if (
-          event.pointerId === state.activePointerId
-          && state.target
-          && state.isOverTarget
-          && state.pointerType != null
+          event.pointerId === state.activePointerId &&
+          state.target &&
+          state.isOverTarget &&
+          state.pointerType != null
         ) {
           state.isOverTarget = false
-          triggerPressEnd(
-            createPointLikeEvent(state.target, event),
-            state.pointerType,
-            false,
-          )
+          triggerPressEnd(createPointLikeEvent(state.target, event), state.pointerType, false)
           cancelOnPointerExit(event)
         }
       }
@@ -684,10 +656,10 @@ export function usePress(props) {
 
     function handleGlobalPointerUp(event) {
       if (
-        event.pointerId === state.activePointerId
-        && state.isPressed
-        && event.button === 0
-        && state.target
+        event.pointerId === state.activePointerId &&
+        state.isPressed &&
+        event.button === 0 &&
+        state.target
       ) {
         if (nodeContains(state.target, getEventTarget(event)) && state.pointerType != null) {
           let clickWasObserved = false
@@ -696,8 +668,7 @@ export function usePress(props) {
             if (state.isPressed && state.target instanceof HTMLElement) {
               if (clickWasObserved) {
                 cancelPress(event)
-              }
-              else {
+              } else {
                 focusWithoutScrolling(state.target)
                 state.target.click()
               }
@@ -710,12 +681,11 @@ export function usePress(props) {
             () => {
               clickWasObserved = true
             },
-            true,
+            true
           )
 
           state.disposables.push(() => clearTimeout(clickTimeout))
-        }
-        else {
+        } else {
           cancelPress(event)
         }
 

@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='pen-alt' viewBox="0 0 16 16">
+      <g clip-path="url(#clip0_8088_137441146)"><path d="M0.749998 0.75L10.75 3.36538L12 8.75M0.749998 0.75L3.36538 10.75L8.75 12M0.749998 0.75L6.5 6.5M6.5 6.5L5.75 8.25L8.25 5.75L6.5 6.5ZM8.75 12L12 8.75M8.75 12L6.5 14.25M12 8.75L14.25 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="bevel"/></g><defs><clipPath id="clip0_8088_137441146"><rect width="16" height="16" fill="white"/></clipPath></defs>
+    </symbol>
+  </defs>
+</svg>

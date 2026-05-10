@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='presentation' viewBox="0 0 16 16">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.09668 7.5L3.40918 2.5H12.5908L12.9033 7.5H3.09668ZM14 1L14.4062 7.5H15V9H14.5H12.9971H8.75V13.5H10.5V15H5.5V13.5H7.25V9H3.00293H1.5H1V7.5H1.59375L2 1H14Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

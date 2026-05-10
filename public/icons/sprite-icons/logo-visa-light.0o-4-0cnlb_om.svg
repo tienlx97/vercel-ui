@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='logo-visa' viewBox="0 0 16 16">
+      <g clip-path="url(#clip0_4915_18681125)"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 0C0.895431 0 0 0.895431 0 2V14C0 15.1046 0.895431 16 2 16H14C15.1046 16 16 15.1046 16 14V2C16 0.895431 15.1046 0 14 0H2ZM8.092 9.371L10.171 4H12.25L8.9 12H6.764L5.263 5.543C5.19 5 5.07 4.872 4.926 4.8C4.464 4.571 3.943 4.4 3.25 4.229L3.308 4H6.302C6.706 4 7.11 4.286 7.226 4.8L8.092 9.371Z" fill="currentColor"/></g><defs><clipPath id="clip0_4915_18681125"><rect width="16" height="16" rx="2" fill="currentColor"/></clipPath></defs>
+    </symbol>
+  </defs>
+</svg>

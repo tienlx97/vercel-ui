@@ -1,14 +1,7 @@
-import {
-  createContext,
-  forwardRef,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import { getOwnerDocument } from '@/utils/496255'
-import { getActiveElement } from '@/utils/755167'
-import { runAfterTransition } from '@/utils/984700'
+import { createContext, forwardRef, useContext, useEffect, useRef, useState } from 'react'
+import { getOwnerDocument } from '@/geist/utils/496255'
+import { getActiveElement } from '@/geist/utils/755167'
+import { runAfterTransition } from '@/geist/utils/984700'
 import { useFocusWithin } from './199070'
 import { mergeProps } from './300597'
 import { useKeyboard } from './428009'
@@ -18,11 +11,7 @@ import { useFocus } from './603140'
 import { useSyncRef } from './899566'
 
 export function useFocusRing(options = {}) {
-  const {
-    autoFocus = false,
-    isTextInput,
-    within,
-  } = options
+  const { autoFocus = false, isTextInput, within } = options
 
   const stateRef = useRef({
     isFocused: false,
@@ -31,13 +20,11 @@ export function useFocusRing(options = {}) {
 
   const [isFocused, setIsFocused] = useState(false)
   const [focusVisibleState, setFocusVisibleState] = useState(
-    () => stateRef.current.isFocused && stateRef.current.isFocusVisible,
+    () => stateRef.current.isFocused && stateRef.current.isFocusVisible
   )
 
   const updateFocusVisibleState = () => {
-    setFocusVisibleState(
-      stateRef.current.isFocused && stateRef.current.isFocusVisible,
-    )
+    setFocusVisibleState(stateRef.current.isFocused && stateRef.current.isFocusVisible)
   }
 
   const handleFocusChange = (nextIsFocused) => {
@@ -52,7 +39,7 @@ export function useFocusRing(options = {}) {
       updateFocusVisibleState()
     },
     [],
-    { isTextInput },
+    { isTextInput }
   )
 
   const { focusProps } = useFocus({
@@ -74,10 +61,7 @@ export function useFocusRing(options = {}) {
 
 const FocusableProviderContext = createContext(null)
 
-const FocusableProvider = forwardRef((
-  { children, ...props },
-  forwardedRef,
-) => {
+const FocusableProvider = forwardRef(({ children, ...props }, forwardedRef) => {
   const providerRef = useObjectOrCallbackRef(forwardedRef)
 
   return (
@@ -115,15 +99,11 @@ export function useFocusable(props, domRef) {
 
       if (getInteractionModality() === 'virtual') {
         runAfterTransition(() => {
-          if (
-            getActiveElement(document) === previouslyFocusedElement
-            && element.isConnected
-          ) {
+          if (getActiveElement(document) === previouslyFocusedElement && element.isConnected) {
             focusWithoutScrolling(element)
           }
         })
-      }
-      else {
+      } else {
         focusWithoutScrolling(element)
       }
     }
@@ -142,7 +122,7 @@ export function useFocusable(props, domRef) {
         ...focusAndKeyboardProps,
         tabIndex,
       },
-      inheritedProps,
+      inheritedProps
     ),
   }
 }

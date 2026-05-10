@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='eye-all-seeing' viewBox="0 0 16 16">
+      <circle cx="8" cy="10" r="1" fill="currentColor"/><path d="M14.707 14.25H1.29297L8 2.51172L14.707 14.25Z" stroke="currentColor" stroke-width="1.5"/><path fill-rule="evenodd" clip-rule="evenodd" d="M12.5858 9.02516L10.6517 7.09102C9.18724 5.62656 6.81287 5.62656 5.34841 7.09103L3.41427 9.02516L2.96973 9.80311V10.5304L5.34841 12.909C6.81287 14.3735 9.18724 14.3735 10.6517 12.909L13.0304 10.5304V9.80311L12.5858 9.02516ZM4.56072 10L6.40907 8.15169C7.28775 7.27301 8.71237 7.27301 9.59105 8.15168L11.4394 10L9.59105 11.8484C8.71237 12.7271 7.28775 12.7271 6.40907 11.8484L4.56072 10Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>

@@ -3,7 +3,7 @@
 
 import clsx from 'clsx'
 import styles from '@/geist/css/spinner.module.css'
-import { px } from '@/utils/677848'
+import { px } from '@/geist/utils/677848'
 
 const SMALL_SPINNER = {
   angleIncrement: 45,

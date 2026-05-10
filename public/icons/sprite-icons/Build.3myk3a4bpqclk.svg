@@ -1,0 +1,8 @@
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id='Build' viewBox="0 0 16 16">
+      <path d="M0.75 9V5H3V3H6.5V5H9.5V3H13V5H15.25V9.5C15.25 10.8807 14.1307 12 12.75 12H7.5" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 9.5V9H3.5V9.5C3.5 10.6046 4.39543 11.5 5.5 11.5H6V12V12.5H5.5C4.39543 12.5 3.5 13.3954 3.5 14.5V15H3H2.5V14.5C2.5 13.3954 1.60457 12.5 0.5 12.5H0V12V11.5H0.5C1.60457 11.5 2.5 10.6046 2.5 9.5Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
