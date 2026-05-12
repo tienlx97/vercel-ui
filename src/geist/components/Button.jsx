@@ -7,7 +7,6 @@ import { Children, forwardRef, useEffect, useRef } from 'react'
 
 import { buttonStyles as styles } from '@/geist/css/styles'
 import { useFocusable, useFocusRing } from '@/geist/hooks/56562'
-import { usePress } from '@/geist/hooks/84671'
 import { mergeProps } from '@/geist/hooks/300597'
 import { useHover } from '@/geist/hooks/434719'
 import { useNewType } from '@/geist/hooks/446691'
@@ -16,6 +15,7 @@ import { getIxIconSize } from '@/geist/utils/225642'
 import { filterDOMProps } from '@/geist/utils/778315'
 import { mergeRefs } from '@/geist/utils/962582'
 import { Spinner } from './Spinner'
+import { usePress } from 'react-aria'
 
 const IS_DEV = process.env.VERCEL_ENV !== 'production'
 

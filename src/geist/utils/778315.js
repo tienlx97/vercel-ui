@@ -1,6 +1,4 @@
-const basePropNames = new Set([
-  'id',
-])
+const basePropNames = new Set(['id'])
 
 const labelablePropNames = new Set([
   'aria-label',
@@ -19,13 +17,7 @@ const linkPropNames = new Set([
   'referrerPolicy',
 ])
 
-const globalDOMPropNames = new Set([
-  'dir',
-  'lang',
-  'hidden',
-  'inert',
-  'translate',
-])
+const globalDOMPropNames = new Set(['dir', 'lang', 'hidden', 'inert', 'translate'])
 
 const domEventPropNames = new Set([
   'onClick',
@@ -67,13 +59,7 @@ const domEventPropNames = new Set([
 const dataAttributeRegex = /^(data-.*)$/
 
 export function filterDOMProps(props, options = {}) {
-  const {
-    labelable,
-    isLink,
-    global,
-    events = global,
-    propNames,
-  } = options
+  const { labelable, isLink, global, events = global, propNames } = options
 
   const filteredProps = {}
 
@@ -82,16 +68,15 @@ export function filterDOMProps(props, options = {}) {
       continue
     }
 
-    const isAllowed
-      = basePropNames.has(propName)
-        || labelable && labelablePropNames.has(propName)
-        || isLink && linkPropNames.has(propName)
-        || global && globalDOMPropNames.has(propName)
-        || events && domEventPropNames.has(propName)
-        || propName.endsWith('Capture')
-        && domEventPropNames.has(propName.slice(0, -7)) 
-        || propNames?.has(propName)
-        || dataAttributeRegex.test(propName)
+    const isAllowed =
+      basePropNames.has(propName) ||
+      (labelable && labelablePropNames.has(propName)) ||
+      (isLink && linkPropNames.has(propName)) ||
+      (global && globalDOMPropNames.has(propName)) ||
+      (events && domEventPropNames.has(propName)) ||
+      (propName.endsWith('Capture') && domEventPropNames.has(propName.slice(0, -7))) ||
+      propNames?.has(propName) ||
+      dataAttributeRegex.test(propName)
 
     if (isAllowed) {
       filteredProps[propName] = props[propName]

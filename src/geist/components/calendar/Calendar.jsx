@@ -10,11 +10,15 @@ import {
   ba,
   bh,
   bJ,
+  bk,
   bl,
   bn,
   bo,
+  bq,
   bQ,
   bs,
+  bU,
+  bV,
   bZ,
   gm,
   ua,
@@ -26,6 +30,9 @@ import {
   uo,
   us,
 } from './helper'
+import { useMessageFormatter, useDateFormatter, useLocale } from '@react-aria/i18n'
+import { filterDOMProps } from '@/geist/utils/778315'
+import { mergeProps, useId } from 'react-aria'
 
 function Calendar(props) {
   return (
@@ -293,7 +300,8 @@ const DateRangePicker = ({
     ),
     Y = (0, useMemo)(() => $.value?.end || new Date(m$.local().endOf('day').toISO()), [$.value]),
     V = (function (e, t) {
-      let r = pU(bK),
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      let r = useMessageFormatter(bk),
         { start: i, end: n } = t.highlightedRange || {
           start: null,
           end: null,
@@ -312,19 +320,22 @@ const DateRangePicker = ({
         }, [i, n, t.anchorDate, r]),
         l = (function (e, t, r) {
           let { isReadOnly: i = !1, isDisabled: n = !1 } = e,
-            a = (0, bG.filterDOMProps)(e, {
+            a = (0, filterDOMProps)(e, {
               labelable: !0,
             }),
-            l = pU(bq),
-            s = p$({
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            l = useMessageFormatter(bq),
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            s = useDateFormatter({
               month: 'long',
               year: 'numeric',
             }),
             o = (0, useRef)(null),
-            u = (0, bY.useId)(e.id),
-            d = (0, bY.useId)(),
-            c = (0, bY.useId)(),
-            { direction: h } = pB()
+            u = (0, useId)(e.id),
+            d = (0, useId)(),
+            c = (0, useId)(),
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            { direction: h } = useLocale()
           ;(bV(() => {
             t.isFocused || bU(s.format(t.currentMonth))
           }, [t.currentMonth]),
@@ -334,7 +345,7 @@ const DateRangePicker = ({
           let m = (function (e) {
             let { id: t, 'aria-label': r, 'aria-labelledby': i } = e
             return (
-              (t = (0, bY.useId)(t)),
+              (t = (0, useId)(t)),
               i && r
                 ? (i = [...new Set([t, ...i.trim().split(/\s+/)])].join(' '))
                 : i && (i = i.trim().split(/\s+/).join(' ')),
@@ -351,7 +362,7 @@ const DateRangePicker = ({
             'aria-labelledby': `${e['aria-labelledby'] || ''} ${e['aria-label'] ? u : ''} ${d}`,
           })
           return {
-            calendarProps: (0, bB.mergeProps)(a, {
+            calendarProps: (0, mergeProps)(a, {
               ...m,
               id: u,
               role: 'group',
@@ -427,7 +438,7 @@ const DateRangePicker = ({
           }
         })(e, t, a)
       return (
-        (l.calendarBodyProps = (0, bB.mergeProps)(l.calendarBodyProps, {
+        (l.calendarBodyProps = (0, mergeProps)(l.calendarBodyProps, {
           'aria-multiselectable': !0,
           onKeyDown: (e) => {
             'Escape' === e.key && t.setAnchorDate(null)

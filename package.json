@@ -14,11 +14,14 @@
     "fix": "npm run lint:fix && npm run format"
   },
   "dependencies": {
+    "@react-aria/i18n": "^3.13.0",
+    "@react-aria/ssr": "^3.10.0",
     "clsx": "^2.1.1",
+    "lodash": "4.18.1",
     "next": "16.2.4",
     "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "lodash": "4.18.1"
+    "react-aria": "^3.48.0",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
