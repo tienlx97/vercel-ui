@@ -540,3 +540,8 @@ class b$ {
 export function bU(e, t = 'assertive', r = 7e3) {
   ;(bz || (bz = new b$()), bz.announce(e, t, r))
 }
+
+//
+
+// eslint-disable-next-line unicorn/prefer-global-this
+export let de = () => ('u' < typeof window ? 'en-US' : window.navigator.language)

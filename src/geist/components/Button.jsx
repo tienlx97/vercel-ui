@@ -6,16 +6,12 @@ import NextLink from 'next/link'
 import { Children, forwardRef, useEffect, useRef } from 'react'
 
 import { buttonStyles as styles } from '@/geist/css/styles'
-import { useFocusable, useFocusRing } from '@/geist/hooks/56562'
-import { mergeProps } from '@/geist/hooks/300597'
-import { useHover } from '@/geist/hooks/434719'
-import { useNewType } from '@/geist/hooks/446691'
-import { useDisabled } from '@/geist/hooks/544652'
 import { getIxIconSize } from '@/geist/utils/225642'
-import { filterDOMProps } from '@/geist/utils/778315'
-import { mergeRefs } from '@/geist/utils/962582'
 import { Spinner } from './Spinner'
-import { usePress } from 'react-aria'
+import { mergeProps, useButton, useFocusRing, useHover } from 'react-aria'
+import { useDisabled } from '../hooks/544652'
+import { useNewType } from '../hooks/446691'
+import { mergeRefs } from '../utils/962582'
 
 const IS_DEV = process.env.VERCEL_ENV !== 'production'
 
@@ -95,96 +91,6 @@ function validateSvgOnlyButton(children, svgOnly, props) {
     throw new Error(
       'SVG/Icon-only Buttons must include both an `aria-label` and the `svgOnly` prop.'
     )
-  }
-}
-
-function useButton(props, ref) {
-  const {
-    elementType = 'button',
-    isDisabled,
-    onPress,
-    onPressStart,
-    onPressEnd,
-    onPressUp,
-    onPressChange,
-    preventFocusOnPress,
-    allowFocusWhenDisabled,
-    onClick,
-    href,
-    target,
-    rel,
-    type = 'button',
-  } = props
-
-  let additionalProps
-
-  additionalProps =
-    elementType === 'button'
-      ? {
-          type,
-          disabled: isDisabled,
-
-          form: props.form,
-          formAction: props.formAction,
-          formEncType: props.formEncType,
-          formMethod: props.formMethod,
-          formNoValidate: props.formNoValidate,
-          formTarget: props.formTarget,
-
-          name: props.name,
-          value: props.value,
-        }
-      : {
-          role: 'button',
-
-          href: elementType !== 'a' || isDisabled ? undefined : href,
-          target: elementType === 'a' ? target : undefined,
-
-          type: elementType === 'input' ? type : undefined,
-          disabled: elementType === 'input' ? isDisabled : undefined,
-
-          'aria-disabled': isDisabled && elementType !== 'input' ? isDisabled : undefined,
-
-          rel: elementType === 'a' ? rel : undefined,
-        }
-
-  const { pressProps, isPressed } = usePress({
-    onPressStart,
-    onPressEnd,
-    onPressChange,
-    onPress,
-    onPressUp,
-    onClick,
-    isDisabled,
-    preventFocusOnPress,
-    ref,
-  })
-
-  const { focusableProps } = useFocusable(props, ref)
-
-  if (allowFocusWhenDisabled) {
-    // eslint-disable-next-line react-hooks/immutability
-    focusableProps.tabIndex = isDisabled ? -1 : focusableProps.tabIndex
-  }
-
-  const mergedProps = mergeProps(
-    focusableProps,
-    pressProps,
-    filterDOMProps(props, {
-      labelable: true,
-    })
-  )
-
-  return {
-    isPressed,
-
-    buttonProps: mergeProps(additionalProps, mergedProps, {
-      'aria-haspopup': props['aria-haspopup'],
-      'aria-expanded': props['aria-expanded'],
-      'aria-controls': props['aria-controls'],
-      'aria-pressed': props['aria-pressed'],
-      'aria-current': props['aria-current'],
-    }),
   }
 }
 

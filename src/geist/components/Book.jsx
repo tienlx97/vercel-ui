@@ -5,7 +5,7 @@ import React from 'react'
 import styles from '../css/book.module.css'
 import { Text } from './Text'
 import { mapResponsiveProp } from '../utils/783151'
-import { Stack } from '.'
+import Stack from './Stack'
 import { Icon } from './icon/Icon'
 
 function DefaultBookIllustration() {

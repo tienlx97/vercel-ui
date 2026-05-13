@@ -20,6 +20,7 @@ import {
   bU,
   bV,
   bZ,
+  de,
   gm,
   ua,
   uc,
@@ -31,8 +32,24 @@ import {
   us,
 } from './helper'
 import { useMessageFormatter, useDateFormatter, useLocale } from '@react-aria/i18n'
-import { filterDOMProps } from '@/geist/utils/778315'
-import { mergeProps, useId } from 'react-aria'
+import { useFocusRing, useId } from 'react-aria'
+import { filterDOMProps } from 'react-aria/filterDOMProps'
+import { mergeProps } from '@/geist/hooks/300597'
+import {
+  endOfDay,
+  format,
+  isSameDay,
+  isSameMonth,
+  isSameMinute,
+  isSameYear,
+  startOfDay,
+  startOfYear,
+  endOfYear,
+  startOfQuarter,
+  endOfQuarter,
+  startOfMonth,
+  endOfMonth,
+} from 'date-fns'
 
 function Calendar(props) {
   return (
@@ -472,7 +489,7 @@ const DateRangePicker = ({
           focusProps: j,
           isFocusVisible: T,
           isFocused: _,
-        } = (0, p4.useFocusRing)({
+        } = (0, useFocusRing)({
           isTextInput: !0,
         })
       ;(0, useEffect)(() => {
@@ -589,17 +606,12 @@ const DateRangePicker = ({
               separator: a = '-',
             } = {}
           ) => {
-            let l = uC(e, t),
-              s = (function (e, t) {
-                uT(2, arguments)
-                var r = u_(e),
-                  i = u_(t)
-                return r.getFullYear() === i.getFullYear() && r.getMonth() === i.getMonth()
-              })(e, t),
-              o = uk(e, t),
-              u = uC(e, r),
-              d = uk(e, r),
-              c = u ? '' : `, ${u5(t, 'yyyy')}`,
+            let l = isSameYear(e, t),
+              s = isSameMonth(e, t),
+              o = isSameDay(e, t),
+              u = isSameYear(e, r),
+              d = isSameDay(e, r),
+              c = u ? '' : `, ${format(t, 'yyyy')}`,
               h = (e) => {
                 let t
                 return (
@@ -615,79 +627,15 @@ const DateRangePicker = ({
                     : t
                 ).replace(/^0/, '')
               },
-              m = n && !u8(uN(e), e) ? `, ${h(e)}` : '',
-              f =
-                n &&
-                !u8(
-                  (function (e) {
-                    uT(1, arguments)
-                    var t = u_(e)
-                    return (t.setHours(23, 59, 59, 999), t)
-                  })(t),
-                  t
-                )
-                  ? `, ${h(t)}`
-                  : ''
-            return u8(
-              (function (e) {
-                uT(1, arguments)
-                var t = u_(e),
-                  r = new Date(0)
-                return (r.setFullYear(t.getFullYear(), 0, 1), r.setHours(0, 0, 0, 0), r)
-              })(e),
-              e
-            ) &&
-              u8(
-                (function (e) {
-                  uT(1, arguments)
-                  var t = u_(e),
-                    r = t.getFullYear()
-                  return (t.setFullYear(r + 1, 0, 0), t.setHours(23, 59, 59, 999), t)
-                })(t),
-                t
-              )
+              m = n && !isSameMinute(startOfDay(e), e) ? `, ${h(e)}` : '',
+              f = n && !isSameMinute(endOfDay(t), t) ? `, ${h(t)}` : ''
+            return isSameMinute(startOfYear(e), e) && isSameMinute(endOfYear(t), t)
               ? `${u5(e, 'yyyy')}`
-              : u8(
-                    (function (e) {
-                      uT(1, arguments)
-                      var t = u_(e),
-                        r = t.getMonth()
-                      return (t.setMonth(r - (r % 3), 1), t.setHours(0, 0, 0, 0), t)
-                    })(e),
-                    e
-                  ) &&
-                  u8(
-                    (function (e) {
-                      uT(1, arguments)
-                      var t = u_(e),
-                        r = t.getMonth()
-                      return (t.setMonth(r - (r % 3) + 3, 0), t.setHours(23, 59, 59, 999), t)
-                    })(t),
-                    t
-                  ) &&
+              : isSameMinute(startOfQuarter(e), e) &&
+                  isSameMinute(endOfQuarter(t), t) &&
                   u7(e) === u7(t)
                 ? `Q${u7(e)} ${u5(e, 'yyyy')}`
-                : u8(
-                      (function (e) {
-                        uT(1, arguments)
-                        var t = u_(e)
-                        return (t.setDate(1), t.setHours(0, 0, 0, 0), t)
-                      })(e),
-                      e
-                    ) &&
-                    u8(
-                      (function (e) {
-                        uT(1, arguments)
-                        var t = u_(e),
-                          r = t.getMonth()
-                        return (
-                          t.setFullYear(t.getFullYear(), r + 1, 0),
-                          t.setHours(23, 59, 59, 999),
-                          t
-                        )
-                      })(t),
-                      t
-                    )
+                : isSameMinute(startOfMonth(e), e) && isSameMinute(endOfMonth(t), t)
                   ? s && l
                     ? `${u5(e, 'LLLL yyyy')}`
                     : `${u5(e, 'LLL')} ${a} ${u5(t, 'LLL yyyy')}`
